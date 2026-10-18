@@ -4,11 +4,11 @@
     in SSMS / Azure Data Studio / VS Code mssql extension)
    ========================================================= */
 
-IF DB_ID('olist') IS NULL
-    CREATE DATABASE SuperstoreDB;
+IF DB_ID('OlistEcommerce') IS NULL
+    CREATE DATABASE OlistEcommerce;
 GO
 
-USE SuperstoreDB;
+USE OlistEcommerce;
 GO
 
 IF SCHEMA_ID('bronze') IS NULL EXEC('CREATE SCHEMA bronze');   -- raw data, exactly as received
