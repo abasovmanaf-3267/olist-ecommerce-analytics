@@ -1,0 +1,5 @@
+ipykernel>=6.29,<8
+pandas>=2.2,<3
+pyodbc>=5.1,<6
+SQLAlchemy>=2.0,<3
+python>=3.11,<3.13
