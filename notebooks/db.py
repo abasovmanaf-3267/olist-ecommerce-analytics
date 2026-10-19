@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 from sqlalchemy import create_engine, text, URL
 
-DB_SERVER = "localhost"
+DB_SERVER = "127.0.0.1"
 DB_PORT   = 1433
 DB_NAME   = "Datacube"
 
