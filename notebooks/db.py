@@ -1,8 +1,8 @@
 import re
+import sys
 from pathlib import Path
 import pandas as pd
 from sqlalchemy import create_engine, text, URL
-
 DB_SERVER = "127.0.0.1"
 DB_PORT   = 1433
 DB_NAME   = "Datacube"
@@ -17,8 +17,28 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SQL_DIR      = PROJECT_ROOT / "sql"
 
 
+def _odbc_driver():
+    """Windows-da ODBC Driver 18 varsa onun adını qaytarır, yoxsa None."""
+    if sys.platform != "win32":
+        return None
+    try:
+        import pyodbc
+    except ImportError:
+        return None
+    for d in pyodbc.drivers():
+        if "ODBC Driver 18" in d:
+            return d
+    return None
+
+
 def get_engine(database=DB_NAME, admin=False):
     user, pwd = (ADMIN_USER, ADMIN_PASSWORD) if admin else (APP_USER, APP_PASSWORD)
+    driver = _odbc_driver()
+    if driver:
+        url = URL.create("mssql+pyodbc", username=user, password=pwd,
+                         host=DB_SERVER, port=DB_PORT, database=database,
+                         query={"driver": driver, "TrustServerCertificate": "yes"})
+        return create_engine(url, fast_executemany=True)
     url = URL.create("mssql+pymssql", username=user, password=pwd,
                      host=DB_SERVER, port=DB_PORT, database=database)
     return create_engine(url)
