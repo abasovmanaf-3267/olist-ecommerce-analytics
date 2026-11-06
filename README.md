@@ -104,7 +104,7 @@ API cavabları lokal olaraq `data/api/` qovluğunda saxlanılır və Bronze qat�
 Layihədə SQL Server üzərində Medallion arxitekturasından istifadə olunur.
 
 ![Weather](screenshots/roadmap.png)
-```
+
 
 ### Bronze qatı
 
