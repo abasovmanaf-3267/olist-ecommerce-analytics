@@ -48,6 +48,10 @@ if st.button("Proqnoz et"):
     probability = model.predict_proba(x)[0, 1]
     st.metric("Gec çatma ehtimalı", f"{probability:.0%}")
 
+
+
+    st.progress(float(probability))
+
     if model.predict(x)[0] == 1:
         st.error("Bu sifariş gec çata bilər.")
     else:
