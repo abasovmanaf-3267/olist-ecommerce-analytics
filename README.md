@@ -525,10 +525,3 @@ Layihəni daha da inkişaf etdirmək üçün mümkün istiqamətlər:
 
 ---
 
-## Müəllif
-
-**Repozitoriyanın sahibi:** [abasovmanaf-3267](https://github.com/abasovmanaf-3267)
-
-Data Analytics | SQL | Python | Machine Learning
-
-[GitHub Repozitoriyası](https://github.com/abasovmanaf-3267/olist-ecommerce-analytics)
