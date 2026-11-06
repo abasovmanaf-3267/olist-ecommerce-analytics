@@ -103,33 +103,7 @@ API cavabları lokal olaraq `data/api/` qovluğunda saxlanılır və Bronze qat�
 
 Layihədə SQL Server üzərində Medallion arxitekturasından istifadə olunur.
 
-```text
-              Mənbə CSV faylları                 Xarici API-lər
-                       |                               |
-                       +---------------+---------------+
-                                       |
-                                       v
-                                BRONZE QATI
-                         Xam mənbə cədvəlləri və API data
-                                       |
-                                       v
-                                SILVER QATI
-                      Təmizlənmiş və standartlaşdırılmış data
-                                       |
-                                       v
-                                 GOLD QATI
-                       Dimension, fact və analitik mart-lar
-                                       |
-                     +-----------------+-----------------+
-                     |                 |                 |
-                     v                 v                 v
-                SQL hesabatları  Statistik analiz  Machine Learning
-                     |                 |                 |
-                     +-----------------+-----------------+
-                                       |
-                                       v
-                              Streamlit tətbiqi
-                         Çatdırılma riskinin proqnozu
+![Weather](screenshots/roadmap.png)
 ```
 
 ### Bronze qatı
@@ -168,57 +142,6 @@ Gold qatı biznes analizinə hazır dimension, fact cədvəllərini və analitik
 | `gold.mart_daily_sales_weather` | Hava və bayram məlumatları ilə zənginləşdirilmiş gündəlik satış və sifariş göstəriciləri |
 
 Hesabat notebook-u konkret biznes suallarına cavab vermək üçün əlavə `gold.report_*` cədvəlləri də yaradır.
-
----
-
-## Repozitoriyanın strukturu
-
-```text
-olist-ecommerce-analytics/
-│
-├── assets/
-│   ├── power-bi-orders-revenue.png
-│   ├── power-bi-payment-analysis.png
-│   └── power-bi-weather-deliveries.png
-│
-├── app/
-│   ├── main.py                     # Streamlit gecikmə riski proqnozu tətbiqi
-│   └── requirements.txt            # Tətbiqin asılılıqları
-│
-├── data/
-│   ├── api/                        # Keşlənmiş API cavabları (JSON)
-│   └── olist_dataset/              # Olist mənbə CSV faylları
-│
-├── models/
-│   └── late_delivery_rf.pkl        # Öyrədilmiş Random Forest modeli
-│
-├── notebooks/
-│   ├── 01_bronze/
-│   │   └── 01_bronze_load.ipynb    # Xam məlumatların və API data-nın yüklənməsi
-│   ├── 02_silver/
-│   │   ├── 02_silver_a.ipynb       # Sifariş, müştəri və ödəniş məlumatlarının təmizlənməsi
-│   │   └── 02_silver_b.ipynb       # Məhsul, satıcı, rəy və referens məlumatlarının təmizlənməsi
-│   ├── 03_gold/
-│   │   ├── 03_gold_analysis/
-│   │   │   ├── 03_gold_a_correlations.ipynb
-│   │   │   └── 03_gold_analysis_b.ipynb
-│   │   ├── 03_gold_sql_report/
-│   │   │   ├── 03_sql_report.ipynb
-│   │   │   └── 03_sql_analysis_b.ipynb
-│   │   └── 04_gold_ml/
-│   │       └── machine_learning.ipynb
-│   └── db.py                       # SQL Server bağlantısı və setup funksiyaları
-│
-├── sql/
-│   └── 01_setup_database.sql       # Verilənlər bazası və schema yaradılması
-│
-├── .streamlit/
-│   └── config.toml                 # Streamlit tema konfiqurasiyası
-│
-├── docker-compose.yml              # SQL Server konteyneri
-├── requirements.txt                # Notebook və analitika asılılıqları
-└── README.md
-```
 
 ---
 
@@ -401,8 +324,7 @@ Layihəyə marketplace satışlarını, müştəri davranışını, ödənişlə
 
 ### 1. Sifarişlər və gəlir (Orders & Revenue)
 
-![Power BI – Sifarişlər və gəlir](assets/power-bi-orders-revenue.png)
-
+![Orders and Revenue](screenshots/orders_and_revenue.png)
 Bu səhifə marketplace performansına ümumi baxış təqdim edir:
 
 - **Gəlir:** 13.59M
@@ -416,7 +338,7 @@ Vizualizasiyalara zaman üzrə gəlir dinamikası, gecikmə intervalına görə 
 
 ### 2. Ödəniş analizi (Payment Analysis)
 
-![Power BI – Ödəniş analizi](assets/power-bi-payment-analysis.png)
+![Payment](screenshots/payment.png)
 
 Bu səhifə müştərilərin alış davranışına və ödəniş üsullarına fokuslanır:
 
@@ -431,7 +353,7 @@ Ekran görüntüsündəki ümumi göstəricilər müştərilərin böyük əksə
 
 ### 3. Hava şəraiti və çatdırılma (Weather & Deliveries)
 
-![Power BI – Hava şəraiti və çatdırılma](assets/power-bi-weather-deliveries.png)
+![Weather](screenshots/weather.png)
 
 Bu səhifə hava şəraiti, müştəri ştatları və gün tipi üzrə çatdırılma performansını araşdırır:
 
