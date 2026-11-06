@@ -31,7 +31,7 @@ Olist Braziliyada müştəriləri və satıcıları bir araya gətirən e-commer
 
 Layihənin məqsədi analitikanın tam iş axınını nümayiş etdirməkdir:
 
-1. Xam CSV fayllarını və xarici API məlumatlarını SQL Server-ə yükləmək.
+1. Raw CSV fayllarını və xarici API məlumatlarını SQL Server-ə yükləmək.
 2. Mənbə məlumatlarını yoxlamaq və təmizləmək.
 3. Məlumatları Bronze, Silver və Gold qatlarına ayırmaq.
 4. Analitik cədvəllər və SQL hesabatları hazırlamaq.
